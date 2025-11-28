@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -22,13 +23,19 @@ class LoginActivity : AppCompatActivity() {
 
         val editTextUsername: EditText = findViewById<EditText>(R.id.editTextUsername)
         val editTextPass: EditText = findViewById<EditText>(R.id.editTextPassword)
-        val btnLogin = findViewById<Button>(R.id.buttonDaftar)
+        val btnLogin = findViewById<Button>(R.id.buttonMasuk)
+        val textViewRegister = findViewById<TextView>(R.id.textViewLinkDaftar)
 
         btnLogin.setOnClickListener {
             val username:String = editTextUsername.text.toString()
-            val intentLogin = Intent(this, DashboardActivity::class.java)
+            val intentLogin = Intent(this, MainActivity::class.java)
             intentLogin.putExtra("username", username)
             startActivity(intentLogin)
+        }
+
+        textViewRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 }
