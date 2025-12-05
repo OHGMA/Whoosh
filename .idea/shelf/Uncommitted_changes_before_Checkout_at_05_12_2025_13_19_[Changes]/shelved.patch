@@ -1,0 +1,16 @@
+Index: app/src/main/java/com/example/whoosh/HistoryFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.whoosh\r\n\r\nimport android.os.Bundle\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.LinearLayout\r\nimport androidx.fragment.app.Fragment\r\n\r\nclass HistoryFragment : Fragment() {\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater,\r\n        container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View? {\r\n        // pastikan nama layout sesuai file di res/layout\r\n        return inflater.inflate(R.layout.activity_history, container, false)\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        val container = view.findViewById<LinearLayout>(R.id.historyContainer)\r\n\r\n        // contoh menambah 3 card\r\n        repeat(3) {\r\n            val card = layoutInflater.inflate(R.layout.item_history, container, false)\r\n            container.addView(card)\r\n        }\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/app/src/main/java/com/example/whoosh/HistoryFragment.kt b/app/src/main/java/com/example/whoosh/HistoryFragment.kt
+--- a/app/src/main/java/com/example/whoosh/HistoryFragment.kt	(revision a95f2c1b301be754404ebb7636cf54e99903e2e2)
++++ b/app/src/main/java/com/example/whoosh/HistoryFragment.kt	(date 1764915494097)
+@@ -6,6 +6,7 @@
+ import android.view.ViewGroup
+ import android.widget.LinearLayout
+ import androidx.fragment.app.Fragment
++import com.example.mojek.R
+ 
+ class HistoryFragment : Fragment() {
+ 
