@@ -20,8 +20,7 @@ class HistoryFragment : Fragment() {
         
         val rvHistory = view.findViewById<RecyclerView>(R.id.rvHistory)
         rvHistory.layoutManager = LinearLayoutManager(context)
-        
-        // Load Data from Repository
+
         val historyList = com.example.model.OrderRepository.getAllOrders()
         
         val adapter = HistoryAdapter(historyList)

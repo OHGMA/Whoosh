@@ -25,7 +25,7 @@ class HistoryAdapter(private val historyList: List<Order>) : RecyclerView.Adapte
         val order = historyList[position]
         holder.tvDest.text = order.to
         holder.tvPrice.text = order.price
-        holder.tvDate.text = "10 Des 2023" // Dummy date for now since Order model doesn't have date
+        holder.tvDate.text = "11 Des 2023"
     }
 
     override fun getItemCount(): Int {

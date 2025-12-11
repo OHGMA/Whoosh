@@ -24,8 +24,6 @@ class PromoAdapter(private val promoList: List<Promo>) : RecyclerView.Adapter<Pr
     override fun onBindViewHolder(holder: PromoViewHolder, position: Int) {
         val promo = promoList[position]
         holder.tvTitle.text = promo.title
-        // In a real app we would load image from URL or Res ID.
-        // For now, we set a background color or placeholder if available
         holder.imgPromo.setBackgroundColor(promo.imageColor)
     }
 

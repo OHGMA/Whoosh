@@ -12,7 +12,6 @@ object OrderRepository {
     val orders = ArrayList<Order>()
 
     init {
-        // Initial Dummy Data
         orders.add(Order("Ke RS Soedono", "SMK 5", "RS Soedono", "Rp15.000", com.example.mojek.R.drawable.ic_motorcycle))
         orders.add(Order("Ke Alun-alun", "Rumah", "Alun-alun", "Rp12.000", com.example.mojek.R.drawable.ic_motorcycle))
     }

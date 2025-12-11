@@ -123,7 +123,7 @@
                 <ImageView
                      android:layout_width="24dp"
                      android:layout_height="24dp"
-                     android:src="@drawable/ic_add_square"/>
+                     android:src="@drawable/ic_money"/>
                 
                 <TextView
                     android:layout_width="wrap_content"
