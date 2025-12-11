@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adapter.OrderAdapter
 import com.example.adapter.PromoAdapter
-import com.example.model.Order
 import com.example.model.Promo
+import com.example.model.OrderRepository
 import com.example.mojek.R
 
 class HomeFragment : Fragment() {
@@ -28,12 +28,10 @@ class HomeFragment : Fragment() {
         // Setup Orders RecyclerView
         val rvOrders = view.findViewById<RecyclerView>(R.id.rvOrders)
         rvOrders.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        val orderList = listOf(
-            Order("Lorem Ipsum", "PNM", "PNM", "Rp10.000", R.drawable.ic_motorcycle),
-            Order("Lorem Ipsum", "PNM", "PNM", "Rp20.000", R.drawable.ic_car),
-            Order("Lorem Ipsum", "PNM", "PNM", "Rp15.000", R.drawable.ic_motorcycle)
-        )
-        rvOrders.adapter = OrderAdapter(orderList)
+        // Recent Orders
+        val recentOrders = OrderRepository.getRecentOrders()
+        val orderAdapter = OrderAdapter(recentOrders)
+        rvOrders.adapter = orderAdapter
 
         // Setup Promos RecyclerView
         val rvPromos = view.findViewById<RecyclerView>(R.id.rvPromos)
