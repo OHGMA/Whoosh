@@ -1,0 +1,574 @@
+Index: app/src/main/java/com/example/whoosh/HistoryFragment.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.whoosh\r\n\r\nimport android.os.Bundle\r\nimport android.view.LayoutInflater\r\nimport android.view.View\r\nimport android.view.ViewGroup\r\nimport android.widget.LinearLayout\r\nimport androidx.fragment.app.Fragment\r\n\r\nclass HistoryFragment : Fragment() {\r\n\r\n    override fun onCreateView(\r\n        inflater: LayoutInflater,\r\n        container: ViewGroup?,\r\n        savedInstanceState: Bundle?\r\n    ): View? {\r\n        // pastikan nama layout sesuai file di res/layout\r\n        return inflater.inflate(R.layout.activity_history, container, false)\r\n    }\r\n\r\n    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {\r\n        super.onViewCreated(view, savedInstanceState)\r\n\r\n        val container = view.findViewById<LinearLayout>(R.id.historyContainer)\r\n\r\n        // contoh menambah 3 card\r\n        repeat(3) {\r\n            val card = layoutInflater.inflate(R.layout.item_history, container, false)\r\n            container.addView(card)\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/whoosh/HistoryFragment.kt b/app/src/main/java/com/example/whoosh/HistoryFragment.kt
+--- a/app/src/main/java/com/example/whoosh/HistoryFragment.kt	(revision a95f2c1b301be754404ebb7636cf54e99903e2e2)
++++ b/app/src/main/java/com/example/whoosh/HistoryFragment.kt	(date 1764915488751)
+@@ -6,6 +6,7 @@
+ import android.view.ViewGroup
+ import android.widget.LinearLayout
+ import androidx.fragment.app.Fragment
++import com.example.mojek.R
+ 
+ class HistoryFragment : Fragment() {
+ 
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/main\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".MainActivity\">\r\n\r\n    <TextView\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"Hello World!\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_main.xml b/app/src/main/res/layout/activity_main.xml
+--- a/app/src/main/res/layout/activity_main.xml	(revision a95f2c1b301be754404ebb7636cf54e99903e2e2)
++++ b/app/src/main/res/layout/activity_main.xml	(date 1764915488745)
+@@ -1,19 +1,424 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.constraintlayout.widget.ConstraintLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:id="@+id/main"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    tools:context=".MainActivity">
++    tools:context=".MainActivity"
++    android:background="@android:color/white">
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:id="@+id/top_bar_container"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:paddingHorizontal="16dp"
++        android:paddingTop="16dp"
++        app:layout_constraintTop_toTopOf="parent">
++
++        <ImageView
++            android:id="@+id/profile_icon"
++            android:layout_width="32dp"
++            android:layout_height="32dp"
++            android:src="@drawable/ic_user"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            android:contentDescription="Ikon Profil" />
++
++        <ImageView
++            android:id="@+id/notification_icon"
++            android:layout_width="32dp"
++            android:layout_height="32dp"
++            android:src="@drawable/ic_notification"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            android:contentDescription="Ikon Notifikasi" />
++    </androidx.constraintlayout.widget.ConstraintLayout>
++
++    <androidx.core.widget.NestedScrollView
++        android:layout_width="match_parent"
++        android:layout_height="0dp"
++        android:fillViewport="true"
++        app:layout_constraintTop_toBottomOf="@id/top_bar_container"
++        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_bar">
++
++        <androidx.constraintlayout.widget.ConstraintLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content">
++
++            <androidx.cardview.widget.CardView
++                android:id="@+id/welcome_card"
++                android:layout_width="match_parent"
++                android:layout_height="140dp"
++                android:layout_margin="16dp"
++                app:cardCornerRadius="16dp"
++                app:cardElevation="0dp"
++                app:cardBackgroundColor="#f0f0f0"
++                app:layout_constraintTop_toTopOf="parent">
++
++                <androidx.constraintlayout.widget.ConstraintLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="match_parent"
++                    android:padding="16dp">
+ 
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Hello World!"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
++                    <TextView
++                        android:id="@+id/welcome_text"
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Selamat Datang,\nYanto Budiman"
++                        android:textSize="18sp"
++                        android:textStyle="bold"
++                        app:layout_constraintTop_toTopOf="parent"
++                        app:layout_constraintStart_toStartOf="parent" />
++
++                    <TextView
++                        android:id="@+id/balance_text"
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Rp5.000"
++                        android:textSize="24sp"
++                        android:textStyle="bold"
++                        android:layout_marginBottom="0dp"
++                        app:layout_constraintBottom_toBottomOf="parent"
++                        app:layout_constraintStart_toStartOf="parent" />
++
++                    <ImageView
++                        android:id="@+id/add_balance_icon"
++                        android:layout_width="24dp"
++                        android:layout_height="24dp"
++                        android:src="@drawable/ic_add_square"
++                        android:layout_marginBottom="2dp"
++                        app:layout_constraintEnd_toEndOf="parent"
++                        app:layout_constraintBottom_toBottomOf="parent"
++                        android:contentDescription="Tambah Saldo" />
++
++                </androidx.constraintlayout.widget.ConstraintLayout>
++            </androidx.cardview.widget.CardView>
++
++            <Button
++                android:id="@+id/order_button"
++                android:layout_width="match_parent"
++                android:layout_height="56dp"
++                android:layout_marginHorizontal="32dp"
++                android:layout_marginTop="8dp"
++                android:text="Pesan Sekarang"
++                android:backgroundTint="#d3d3d3"
++                android:textColor="#808080"
++                app:cornerRadius="28dp"
++                app:layout_constraintTop_toBottomOf="@id/welcome_card" />
++
++            <TextView
++                android:id="@+id/last_orders_title"
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:text="Pemesanan Terakhir"
++                android:textSize="16sp"
++                android:textStyle="bold"
++                android:layout_marginTop="24dp"
++                android:layout_marginStart="16dp"
++                app:layout_constraintTop_toBottomOf="@id/order_button"
++                app:layout_constraintStart_toStartOf="parent" />
++
++            <LinearLayout
++                android:id="@+id/last_orders_container"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:paddingHorizontal="16dp"
++                android:layout_marginTop="8dp"
++                app:layout_constraintTop_toBottomOf="@id/last_orders_title">
++
++                <androidx.cardview.widget.CardView
++                    android:layout_width="0dp"
++                    android:layout_height="wrap_content"
++                    android:layout_weight="1"
++                    android:layout_marginEnd="8dp"
++                    app:cardCornerRadius="8dp"
++                    app:cardElevation="2dp">
++
++                    <androidx.constraintlayout.widget.ConstraintLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:padding="12dp">
++
++                        <ImageView
++                            android:id="@+id/order1_icon"
++                            android:layout_width="24dp"
++                            android:layout_height="24dp"
++                            android:src="@drawable/ic_motorcycle"
++                            app:layout_constraintTop_toTopOf="parent"
++                            app:layout_constraintStart_toStartOf="parent"
++                            android:contentDescription="Ikon Motor" />
++
++                        <TextView
++                            android:id="@+id/order1_title"
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="Lorem Ipsum"
++                            android:textStyle="bold"
++                            android:layout_marginStart="4dp"
++                            app:layout_constraintTop_toTopOf="@id/order1_icon"
++                            app:layout_constraintBottom_toBottomOf="@id/order1_icon"
++                            app:layout_constraintStart_toEndOf="@id/order1_icon" />
++
++                        <TextView
++                            android:id="@+id/order1_from"
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="From: PNM"
++                            android:textSize="12sp"
++                            android:layout_marginTop="8dp"
++                            app:layout_constraintTop_toBottomOf="@id/order1_icon"
++                            app:layout_constraintStart_toStartOf="parent" />
++
++                        <TextView
++                            android:id="@+id/order1_to"
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="To: PNM"
++                            android:textSize="12sp"
++                            app:layout_constraintTop_toBottomOf="@id/order1_from"
++                            app:layout_constraintStart_toStartOf="parent" />
++
++                        <TextView
++                            android:id="@+id/order1_price_label"
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="Harga:"
++                            android:textSize="12sp"
++                            android:layout_marginTop="8dp"
++                            app:layout_constraintTop_toBottomOf="@id/order1_to"
++                            app:layout_constraintStart_toStartOf="parent" />
++
++                        <TextView
++                            android:id="@+id/order1_price"
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="Rp10.000"
++                            android:textStyle="bold"
++                            android:textColor="@android:color/black"
++                            android:layout_marginStart="4dp"
++                            app:layout_constraintTop_toTopOf="@id/order1_price_label"
++                            app:layout_constraintBottom_toBottomOf="@id/order1_price_label"
++                            app:layout_constraintStart_toEndOf="@id/order1_price_label" />
++
++                        <ImageView
++                            android:layout_width="16dp"
++                            android:layout_height="16dp"
++                            android:layout_marginEnd="4dp"
++                            app:layout_constraintTop_toBottomOf="@id/order1_from"
++                            app:layout_constraintStart_toStartOf="parent"
++                            android:contentDescription="Ikon Panah" />
++                    </androidx.constraintlayout.widget.ConstraintLayout>
++                </androidx.cardview.widget.CardView>
++
++                <androidx.cardview.widget.CardView
++                    android:layout_width="0dp"
++                    android:layout_height="wrap_content"
++                    android:layout_weight="1"
++                    android:layout_marginStart="8dp"
++                    app:cardCornerRadius="8dp"
++                    app:cardElevation="2dp">
++
++                    <androidx.constraintlayout.widget.ConstraintLayout
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"
++                        android:padding="12dp">
++
++                        <ImageView
++                            android:id="@+id/order2_icon"
++                            android:layout_width="24dp"
++                            android:layout_height="24dp"
++                            android:src="@drawable/ic_car"
++                            app:layout_constraintTop_toTopOf="parent"
++                            app:layout_constraintStart_toStartOf="parent"
++                            android:contentDescription="Ikon Mobil" />
++
++                        <TextView
++                            android:id="@+id/order2_title"
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="Lorem Ipsum"
++                            android:textStyle="bold"
++                            android:layout_marginStart="4dp"
++                            app:layout_constraintTop_toTopOf="@id/order2_icon"
++                            app:layout_constraintBottom_toBottomOf="@id/order2_icon"
++                            app:layout_constraintStart_toEndOf="@id/order2_icon" />
++
++                        <TextView
++                            android:id="@+id/order2_from"
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="From: PNM"
++                            android:textSize="12sp"
++                            android:layout_marginTop="8dp"
++                            app:layout_constraintTop_toBottomOf="@id/order2_icon"
++                            app:layout_constraintStart_toStartOf="parent" />
++
++                        <TextView
++                            android:id="@+id/order2_to"
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="To: PNM"
++                            android:textSize="12sp"
++                            app:layout_constraintTop_toBottomOf="@id/order2_from"
++                            app:layout_constraintStart_toStartOf="parent" />
++
++                        <TextView
++                            android:id="@+id/order2_price_label"
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="Harga:"
++                            android:textSize="12sp"
++                            android:layout_marginTop="8dp"
++                            app:layout_constraintTop_toBottomOf="@id/order2_to"
++                            app:layout_constraintStart_toStartOf="parent" />
++
++                        <TextView
++                            android:id="@+id/order2_price"
++                            android:layout_width="wrap_content"
++                            android:layout_height="wrap_content"
++                            android:text="Rp20.000"
++                            android:textStyle="bold"
++                            android:textColor="@android:color/black"
++                            android:layout_marginStart="4dp"
++                            app:layout_constraintTop_toTopOf="@id/order2_price_label"
++                            app:layout_constraintBottom_toBottomOf="@id/order2_price_label"
++                            app:layout_constraintStart_toEndOf="@id/order2_price_label" />
++
++                        <ImageView
++                            android:layout_width="16dp"
++                            android:layout_height="16dp"
++                            android:layout_marginEnd="4dp"
++                            app:layout_constraintTop_toBottomOf="@id/order2_from"
++                            app:layout_constraintStart_toStartOf="parent"
++                            android:contentDescription="Ikon Panah" />
++                    </androidx.constraintlayout.widget.ConstraintLayout>
++                </androidx.cardview.widget.CardView>
++            </LinearLayout>
++
++            <androidx.constraintlayout.widget.ConstraintLayout
++                android:id="@+id/promo_header"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:paddingHorizontal="16dp"
++                android:layout_marginTop="24dp"
++                app:layout_constraintTop_toBottomOf="@id/last_orders_container">
++
++                <TextView
++                    android:layout_width="wrap_content"
++                    android:layout_height="wrap_content"
++                    android:text="Promo"
++                    android:textSize="16sp"
++                    android:textStyle="bold"
++                    app:layout_constraintStart_toStartOf="parent"
++                    app:layout_constraintTop_toTopOf="parent"
++                    app:layout_constraintBottom_toBottomOf="parent" />
++
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_line"
++                    app:layout_constraintEnd_toEndOf="parent"
++                    app:layout_constraintTop_toTopOf="parent"
++                    app:layout_constraintBottom_toBottomOf="parent"
++                    android:contentDescription="Ikon Menu/Filter" />
++
++            </androidx.constraintlayout.widget.ConstraintLayout>
++
++            <androidx.cardview.widget.CardView
++                android:id="@+id/promo_card1"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginHorizontal="16dp"
++                android:layout_marginTop="8dp"
++                app:cardCornerRadius="10dp"
++                app:cardElevation="0dp"
++                app:cardBackgroundColor="#f0f0f0"
++                app:layout_constraintTop_toBottomOf="@id/promo_header">
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:orientation="horizontal"
++                    android:padding="10dp"
++                    android:gravity="center_vertical">
++
++                    <ImageView
++                        android:layout_width="60dp"
++                        android:layout_height="60dp"
++                        android:scaleType="centerCrop"
++                        android:background="#e0e0e0"
++                        android:contentDescription="Gambar Promo 1" />
++
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Lorem Ipsum Dolor Amet"
++                        android:textStyle="bold"
++                        android:layout_marginStart="16dp"
++                        android:textColor="@android:color/black" />
++
++                </LinearLayout>
++            </androidx.cardview.widget.CardView>
++
++            <androidx.cardview.widget.CardView
++                android:id="@+id/promo_card2"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:layout_marginHorizontal="16dp"
++                android:layout_marginTop="8dp"
++                android:layout_marginBottom="16dp"
++                app:cardCornerRadius="10dp"
++                app:cardElevation="0dp"
++                app:cardBackgroundColor="#f0f0f0"
++                app:layout_constraintTop_toBottomOf="@id/promo_card1"
++                app:layout_constraintBottom_toBottomOf="parent">
++
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:orientation="horizontal"
++                    android:padding="10dp"
++                    android:gravity="center_vertical">
++
++                    <ImageView
++                        android:layout_width="60dp"
++                        android:layout_height="60dp"
++                        android:scaleType="centerCrop"
++                        android:background="#e0e0e0"
++                        android:contentDescription="Gambar Promo 2" />
++
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Lorem Ipsum Dolor Amet"
++                        android:textStyle="bold"
++                        android:layout_marginStart="16dp"
++                        android:textColor="@android:color/black" />
++
++                </LinearLayout>
++            </androidx.cardview.widget.CardView>
++
++        </androidx.constraintlayout.widget.ConstraintLayout>
++    </androidx.core.widget.NestedScrollView>
++
++    <LinearLayout
++        android:id="@+id/bottom_navigation_bar"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:gravity="center"
++        android:background="@android:color/white"
++        android:paddingVertical="8dp"
++        app:layout_constraintBottom_toBottomOf="parent">
++
++        <ImageView android:layout_width="0dp" android:layout_height="32dp" android:layout_weight="1" android:src="@drawable/ic_home" android:contentDescription="Beranda" />
++        <ImageView android:layout_width="0dp" android:layout_height="32dp" android:layout_weight="1" android:src="@drawable/ic_history" android:contentDescription="Riwayat" />
++        <ImageView android:layout_width="0dp" android:layout_height="32dp" android:layout_weight="1" android:src="@drawable/ic_chat" android:contentDescription="Pesan" />
++        <ImageView android:layout_width="0dp" android:layout_height="32dp" android:layout_weight="1" android:src="@drawable/ic_settings" android:contentDescription="Pengaturan" />
++
++    </LinearLayout>
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/res/menu/bottom_menu.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/menu/bottom_menu.xml b/app/src/main/res/menu/bottom_menu.xml
+new file mode 100644
+--- /dev/null	(date 1764324759941)
++++ b/app/src/main/res/menu/bottom_menu.xml	(date 1764324759941)
+@@ -0,0 +1,24 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android">
++
++    <item
++        android:title="Home"
++        android:id="@+id/homeFragment"
++        android:icon="@drawable/ic_launcher_foreground"/>
++
++    <item
++        android:title="History"
++        android:id="@+id/historyFragment"
++        android:icon="@drawable/ic_launcher_foreground"/>
++
++    <item
++        android:title="Chat"
++        android:id="@+id/chatFragment"
++        android:icon="@drawable/ic_launcher_foreground"/>
++
++    <item
++        android:title="Setting"
++        android:id="@+id/settingFragment"
++        android:icon="@drawable/ic_launcher_foreground"/>
++
++</menu>
+\ No newline at end of file
+Index: app/src/main/res/drawable/ic_notification.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_notification.xml b/app/src/main/res/drawable/ic_notification.xml
+new file mode 100644
+--- /dev/null	(date 1764915225399)
++++ b/app/src/main/res/drawable/ic_notification.xml	(date 1764915225399)
+@@ -0,0 +1,5 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:tint="#000000" android:viewportHeight="960" android:viewportWidth="960" android:width="24dp">
++      
++    <path android:fillColor="@android:color/white" android:pathData="M480,740Q505,740 522.5,722.5Q540,705 540,680L420,680Q420,705 437.5,722.5Q455,740 480,740ZM280,640L680,640L680,560L640,560L640,456Q640,395 608.5,344.5Q577,294 520,280L520,260Q520,243 508.5,231.5Q497,220 480,220Q463,220 451.5,231.5Q440,243 440,260L440,280Q383,294 351.5,344.5Q320,395 320,456L320,560L280,560L280,640ZM400,560L400,440Q400,407 423.5,383.5Q447,360 480,360Q513,360 536.5,383.5Q560,407 560,440L560,560L400,560ZM480,880Q397,880 324,848.5Q251,817 197,763Q143,709 111.5,636Q80,563 80,480Q80,397 111.5,324Q143,251 197,197Q251,143 324,111.5Q397,80 480,80Q563,80 636,111.5Q709,143 763,197Q817,251 848.5,324Q880,397 880,480Q880,563 848.5,636Q817,709 763,763Q709,817 636,848.5Q563,880 480,880ZM480,800Q614,800 707,707Q800,614 800,480Q800,346 707,253Q614,160 480,160Q346,160 253,253Q160,346 160,480Q160,614 253,707Q346,800 480,800ZM480,480Q480,480 480,480Q480,480 480,480Q480,480 480,480Q480,480 480,480Q480,480 480,480Q480,480 480,480Q480,480 480,480Q480,480 480,480Z"/>
++    
++</vector>
+Index: app/src/main/res/drawable/ic_add_square.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_add_square.xml b/app/src/main/res/drawable/ic_add_square.xml
+new file mode 100644
+--- /dev/null	(date 1764915289046)
++++ b/app/src/main/res/drawable/ic_add_square.xml	(date 1764915289046)
+@@ -0,0 +1,5 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:tint="#000000" android:viewportHeight="960" android:viewportWidth="960" android:width="24dp">
++      
++    <path android:fillColor="@android:color/white" android:pathData="M440,840L440,520L120,520L120,440L440,440L440,120L520,120L520,440L840,440L840,520L520,520L520,840L440,840Z"/>
++    
++</vector>
+Index: app/src/main/res/drawable/ic_car.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_car.xml b/app/src/main/res/drawable/ic_car.xml
+new file mode 100644
+--- /dev/null	(date 1764914829099)
++++ b/app/src/main/res/drawable/ic_car.xml	(date 1764914829099)
+@@ -0,0 +1,5 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:tint="#000000" android:viewportHeight="960" android:viewportWidth="960" android:width="24dp">
++      
++    <path android:fillColor="@android:color/white" android:pathData="M240,760L240,800Q240,817 228.5,828.5Q217,840 200,840L160,840Q143,840 131.5,828.5Q120,817 120,800L120,480L204,240Q210,222 225.5,211Q241,200 260,200L700,200Q719,200 734.5,211Q750,222 756,240L840,480L840,800Q840,817 828.5,828.5Q817,840 800,840L760,840Q743,840 731.5,828.5Q720,817 720,800L720,760L240,760ZM232,400L728,400L686,280L274,280L232,400ZM200,480L200,480L200,680L200,680L200,480ZM300,640Q325,640 342.5,622.5Q360,605 360,580Q360,555 342.5,537.5Q325,520 300,520Q275,520 257.5,537.5Q240,555 240,580Q240,605 257.5,622.5Q275,640 300,640ZM660,640Q685,640 702.5,622.5Q720,605 720,580Q720,555 702.5,537.5Q685,520 660,520Q635,520 617.5,537.5Q600,555 600,580Q600,605 617.5,622.5Q635,640 660,640ZM200,680L760,680L760,480L200,480L200,680Z"/>
++    
++</vector>
+Index: app/src/main/res/drawable/ic_arrow_up_right.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_arrow_up_right.xml b/app/src/main/res/drawable/ic_arrow_up_right.xml
+new file mode 100644
+--- /dev/null	(date 1764914595485)
++++ b/app/src/main/res/drawable/ic_arrow_up_right.xml	(date 1764914595485)
+@@ -0,0 +1,5 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android" android:autoMirrored="true" android:height="24dp" android:tint="#000000" android:viewportHeight="960" android:viewportWidth="960" android:width="24dp">
++      
++    <path android:fillColor="@android:color/white" android:pathData="M256,720L200,664L584,280L240,280L240,200L720,200L720,680L640,680L640,336L256,720Z"/>
++    
++</vector>
+Index: app/src/main/res/drawable/ic_user.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_user.xml b/app/src/main/res/drawable/ic_user.xml
+new file mode 100644
+--- /dev/null	(date 1764915148857)
++++ b/app/src/main/res/drawable/ic_user.xml	(date 1764915148857)
+@@ -0,0 +1,5 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:tint="#000000" android:viewportHeight="960" android:viewportWidth="960" android:width="24dp">
++      
++    <path android:fillColor="@android:color/white" android:pathData="M120,386L120,301L301,120L386,120L120,386ZM120,190L120,120L120,120L190,120L120,190ZM647,257Q637,246 625.5,235.5Q614,225 602,217L699,120L784,120L784,120L647,257ZM220,599L297,522Q304,533 311.5,542Q319,551 328,559L328,559Q300,566 271.5,576.5Q243,587 220,599ZM700,402Q700,401 700,401Q700,401 700,400Q700,381 697,363Q694,345 688,328L840,176L840,262L700,402ZM436,184L501,120L586,120L522,184Q511,182 501,181Q491,180 480,180Q469,180 458,181Q447,182 436,184ZM120,585L120,500L264,356Q262,367 261,378Q260,389 260,400Q260,411 261,421Q262,431 264,441L120,585ZM829,668Q821,656 810.5,645Q800,634 788,625L840,573L840,658L829,668ZM713,586Q706,583 699,580.5Q692,578 685,576Q676,573 667.5,570Q659,567 650,565L840,374L840,460L713,586ZM480,560Q414,560 367,513Q320,466 320,400Q320,334 367,287Q414,240 480,240Q546,240 593,287Q640,334 640,400Q640,466 593,513Q546,560 480,560ZM480,480Q513,480 536.5,456.5Q560,433 560,400Q560,367 536.5,343.5Q513,320 480,320Q447,320 423.5,343.5Q400,367 400,400Q400,433 423.5,456.5Q447,480 480,480ZM160,840L160,769Q160,735 177,706Q194,677 224,662Q275,636 339.5,618Q404,600 480,600Q556,600 620.5,618Q685,636 736,662Q766,677 783,706Q800,735 800,769L800,840L160,840ZM241,760L719,760Q717,751 712,744.5Q707,738 699,734Q663,716 607.5,698Q552,680 480,680Q408,680 352.5,698Q297,716 261,734Q253,738 248,745Q243,752 241,760ZM480,760Q480,760 480,760Q480,760 480,760Q480,760 480,760Q480,760 480,760Q480,760 480,760Q480,760 480,760Q480,760 480,760Q480,760 480,760ZM480,400Q480,400 480,400Q480,400 480,400Q480,400 480,400Q480,400 480,400Q480,400 480,400Q480,400 480,400Q480,400 480,400Q480,400 480,400Z"/>
++    
++</vector>
