@@ -28,7 +28,6 @@ class BookingFragment : Fragment() {
 
         val btnOrder = view.findViewById<Button>(R.id.btnOrder)
         btnOrder.setOnClickListener {
-            // Simulate finding driver
             btnOrder.text = "Mencari Driver..."
             btnOrder.isEnabled = false
             
@@ -36,7 +35,6 @@ class BookingFragment : Fragment() {
             val toLocation = view.findViewById<android.widget.EditText>(R.id.etTo).text.toString()
 
             Handler(Looper.getMainLooper()).postDelayed({
-                // Navigate to Trip
                 if (isAdded) {
                    Toast.makeText(context, "Driver Ditemukan!", Toast.LENGTH_SHORT).show()
                    

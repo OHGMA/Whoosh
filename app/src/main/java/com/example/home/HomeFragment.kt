@@ -33,9 +33,9 @@ class HomeFragment : Fragment() {
         val rvPromos = view.findViewById<RecyclerView>(R.id.rvPromos)
         rvPromos.layoutManager = LinearLayoutManager(context)
         val promoList = listOf(
-            Promo("Lorem Ipsum Dolor Amet", Color.parseColor("#e0e0e0")),
-            Promo("Lorem Ipsum Dolor Amet", Color.parseColor("#e0e0e0")),
-            Promo("Lorem Ipsum Dolor Amet", Color.parseColor("#e0e0e0"))
+            Promo("Promo 17 AGUSTUS", Color.parseColor("#e0e0e0")),
+            Promo("Promo Akhir Bulan", Color.parseColor("#e0e0e0")),
+            Promo("Promo Akhir Tahun", Color.parseColor("#e0e0e0"))
         )
         rvPromos.adapter = PromoAdapter(promoList)
 
