@@ -1,4 +1,4 @@
-package com.example.whoosh
+package com.example.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mojek.R
+import com.example.model.Setting
 
-class SettingAdapter(private val items: List<SettingItem>) :
+class SettingAdapter(private val items: List<Setting>) :
     RecyclerView.Adapter<SettingAdapter.SettingViewHolder>() {
 
     class SettingViewHolder(view: View) : RecyclerView.ViewHolder(view) {

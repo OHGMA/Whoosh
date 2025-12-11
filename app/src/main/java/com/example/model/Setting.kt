@@ -1,6 +1,6 @@
-package com.example.whoosh
+package com.example.model
 
-data class SettingItem(
+data class Setting(
     val title: String,
     var isEnabled: Boolean = false
 )
