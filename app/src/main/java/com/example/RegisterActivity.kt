@@ -10,6 +10,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.LoginActivity
+import com.example.home.HomeActivity
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
         val textViewLogin = findViewById<TextView>(R.id.textViewLinkMasuk)
 
         btnRegister.setOnClickListener {
-            val intentRegister = Intent(this, MainActivity::class.java)
+            val intentRegister = Intent(this, HomeActivity::class.java)
             if (editTextPass.text.toString()==editTextConfirmPass.text.toString()) {
                 startActivity(intentRegister)
             } else {

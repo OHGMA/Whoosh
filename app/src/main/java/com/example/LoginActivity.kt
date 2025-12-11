@@ -1,4 +1,4 @@
-package com.example.mojek
+package com.example
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.home.HomeActivity
+import com.example.mojek.MainActivity
+import com.example.mojek.R
+import com.example.mojek.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener {
             val username:String = editTextUsername.text.toString()
-            val intentLogin = Intent(this, MainActivity::class.java)
+            val intentLogin = Intent(this, HomeActivity::class.java)
             intentLogin.putExtra("username", username)
             startActivity(intentLogin)
         }
