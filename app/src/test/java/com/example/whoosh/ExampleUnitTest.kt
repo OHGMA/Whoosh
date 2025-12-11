@@ -1,4 +1,4 @@
-package com.example.mojek
+package com.example.whoosh
 
 import org.junit.Test
 

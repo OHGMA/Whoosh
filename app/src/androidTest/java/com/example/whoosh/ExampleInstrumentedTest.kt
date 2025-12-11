@@ -1,4 +1,4 @@
-package com.example.mojek
+package com.example.whoosh
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
